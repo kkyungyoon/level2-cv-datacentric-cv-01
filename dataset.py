@@ -9,6 +9,7 @@ import cv2
 import albumentations as A
 from torch.utils.data import Dataset
 from shapely.geometry import Polygon
+from albumentations.pytorch import ToTensorV2
 
 
 def cal_distance(x1, y1, x2, y2):
@@ -333,6 +334,8 @@ def filter_vertices(vertices, labels, ignore_under=0, drop_under=0):
     return new_vertices, new_labels
 
 
+
+
 class SceneTextDataset(Dataset):
     def __init__(self, root_dir,
                  split='train',
@@ -361,6 +364,17 @@ class SceneTextDataset(Dataset):
         self.drop_under_threshold = drop_under_threshold
         self.ignore_under_threshold = ignore_under_threshold
 
+        self.transform = A.Compose([
+        A.Resize(height=image_size, width=image_size),           # resize_img 대체
+        A.RandomCrop(height=crop_size, width=crop_size),         # crop_img 대체
+        A.Rotate(limit=45),                                      # rotate_img 대체
+        A.RandomBrightnessContrast(p=0.2),                       # 추가적인 밝기/대비 증강
+        A.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)), # normalize
+        ],
+        keypoint_params=A.KeypointParams(format='xy', remove_invisible=False)
+)
+
+
     def _infer_dir(self, fname):
         lang_indicator = fname.split('.')[1]
         if lang_indicator == 'zh':
@@ -374,6 +388,7 @@ class SceneTextDataset(Dataset):
         else:
             raise ValueError
         return osp.join(self.root_dir, f'{lang}_receipt', 'img', self.split)
+    
     def __len__(self):
         return len(self.image_fnames)
 
@@ -398,24 +413,33 @@ class SceneTextDataset(Dataset):
         )
 
         image = Image.open(image_fpath)
-        image, vertices = resize_img(image, vertices, self.image_size)
-        image, vertices = adjust_height(image, vertices)
-        image, vertices = rotate_img(image, vertices)
-        image, vertices = crop_img(image, vertices, labels, self.crop_size)
+        # image, vertices = resize_img(image, vertices, self.image_size)
+        # image, vertices = adjust_height(image, vertices)
+        # image, vertices = rotate_img(image, vertices)
+        # image, vertices = crop_img(image, vertices, labels, self.crop_size)
 
         if image.mode != 'RGB':
             image = image.convert('RGB')
         image = np.array(image)
 
-        funcs = []
-        if self.color_jitter:
-            funcs.append(A.ColorJitter())
-        if self.normalize:
-            funcs.append(A.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)))
-        transform = A.Compose(funcs)
+        # funcs = []
+        # if self.color_jitter:
+        #     funcs.append(A.ColorJitter())
+        # if self.normalize:
+        #     funcs.append(A.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)))
+        # transform = A.Compose(funcs)
 
-        image = transform(image=image)['image']
-        word_bboxes = np.reshape(vertices, (-1, 4, 2))
+        word_bboxes = vertices.reshape(-1, 2).tolist()
+
+        augmented = self.transform(image=image,keypoints=word_bboxes)
+
+        image = self.transform(image=image)['image']
+        word_bboxes = augmented['keypoints']  
+
+
+        word_bboxes = np.array(word_bboxes).reshape(-1, 4, 2)
         roi_mask = generate_roi_mask(image, vertices, labels)
+
+        # print("shape",image.shape)
 
         return image, word_bboxes, roi_mask

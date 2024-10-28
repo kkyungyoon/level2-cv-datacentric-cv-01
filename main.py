@@ -10,6 +10,7 @@ from torch import cuda
 from torch.utils.data import DataLoader
 from torch.optim import lr_scheduler
 from tqdm import tqdm
+from time import gmtime, strftime
 
 
 import wandb
@@ -29,7 +30,9 @@ def parse_args():
     parser.add_argument('--model_dir', type=str, default=os.environ.get('SM_MODEL_DIR',
                                                                         'trained_models'))
 
-    # parser.add_argument('--device', default='cuda' if cuda.is_available() else 'cpu')
+    parser.add_argument('--output_dir', type=str, default='./output')
+
+
     parser.add_argument("--gpus", type=str, default='0')
     parser.add_argument('--num_workers', type=int, default=4)
 
@@ -38,7 +41,6 @@ def parse_args():
     parser.add_argument('--batch_size', type=int, default=8)
     parser.add_argument('--learning_rate', type=float, default=1e-3)
     parser.add_argument('--epoch', type=int, default=150)
-    # parser.add_argument('--save_interval', type=int, default=5)
     
     args = parser.parse_args()
 
@@ -72,7 +74,7 @@ def do_training(args):
     
     
     # my_loggers = setup_logger(args.use_wandb, args.output_dir)
-    my_loggers = setup_logger()
+    my_loggers = setup_logger(output_dir=args.output_dir)
 
     checkpoint_callback = []
     checkpoint_callback.append(
@@ -115,4 +117,11 @@ def main(args):
 if __name__ == '__main__':
     args = parse_args()
     args.gpus = [int(i) for i in str(args.gpus).split(",")]
+
+    name_str = "tmp"
+
+    current_time = strftime("%m-%d_%H:%M:%S", gmtime())
+
+    args.output_dir = os.path.join(args.output_dir, name_str + "_" + current_time)
+
     main(args)

@@ -38,7 +38,7 @@ def parse_args():
 
     parser.add_argument('--image_size', type=int, default=2048)
     parser.add_argument('--input_size', type=int, default=1024)
-    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--batch_size', type=int, default=8)
     parser.add_argument('--learning_rate', type=float, default=1e-3)
     parser.add_argument('--epoch', type=int, default=150)
     
@@ -118,7 +118,7 @@ if __name__ == '__main__':
     args = parse_args()
     args.gpus = [int(i) for i in str(args.gpus).split(",")]
 
-    name_str = "tmp"
+    name_str = "1024_size"
 
     current_time = strftime("%m-%d_%H:%M:%S", gmtime())
 

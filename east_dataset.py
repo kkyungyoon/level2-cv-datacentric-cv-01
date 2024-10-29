@@ -7,7 +7,6 @@ from torch.utils.data import Dataset
 
 from numba import jit ##TODO 
 
-@jit(nopython=True)##TODO
 def shrink_bbox(bbox, coef=0.3, inplace=False):
     lens = [np.linalg.norm(bbox[i] - bbox[(i + 1) % 4], ord=2) for i in range(4)]
     r = [min(lens[(i - 1) % 4], lens[i]) for i in range(4)]
@@ -39,7 +38,6 @@ def get_rotated_coords(h, w, theta, anchor):
     rotated_y = rotated_coord[1, :].reshape(y.shape)
     return rotated_x, rotated_y
 
-@jit(nopython=True) ##TODO
 def get_rotate_mat(theta):
     return np.array([[math.cos(theta), -math.sin(theta)],
                      [math.sin(theta), math.cos(theta)]])

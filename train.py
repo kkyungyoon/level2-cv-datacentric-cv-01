@@ -14,6 +14,7 @@ from tqdm import tqdm
 from east_dataset import EASTDataset
 from dataset import SceneTextDataset
 from model import EAST
+import time
 
 
 def parse_args():
@@ -71,6 +72,15 @@ def do_training(data_dir, model_dir, device, image_size, input_size, num_workers
         epoch_loss, epoch_start = 0, time.time()
         with tqdm(total=num_batches) as pbar:
             for img, gt_score_map, gt_geo_map, roi_mask in train_loader:
+                
+
+                start_time = time.time()
+
+                try:
+                    print("load time:",start_time-end_time)
+                except Exception:
+                    pass
+
                 pbar.set_description('[Epoch {}]'.format(epoch + 1))
 
                 loss, extra_info = model.train_step(img, gt_score_map, gt_geo_map, roi_mask)
@@ -87,6 +97,13 @@ def do_training(data_dir, model_dir, device, image_size, input_size, num_workers
                     'IoU loss': extra_info['iou_loss']
                 }
                 pbar.set_postfix(val_dict)
+
+                end_time = time.time()
+
+
+                print("Execution Time:", end_time - start_time, "seconds")
+
+
 
         scheduler.step()
 

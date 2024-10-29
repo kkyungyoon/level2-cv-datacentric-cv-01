@@ -7,3 +7,4 @@
 *.log
 *.wandb
 *.json
+*.yaml

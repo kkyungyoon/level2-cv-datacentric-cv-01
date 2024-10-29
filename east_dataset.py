@@ -53,7 +53,6 @@ def calc_error_from_rect(bbox):
                     dtype=np.float32)
     return np.linalg.norm(bbox - rect, axis=0).sum()
 
-@jit(nopython=True) ##TODO
 def rotate_bbox(bbox, theta, anchor=None):
     points = bbox.T
     if anchor is None:

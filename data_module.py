@@ -30,7 +30,6 @@ class DataModule(pl.LightningDataModule):
         if stage == "fit":
 
             # full_trainset = train_data(self.data_name, self.train_transform, self.train_data_dir,info_df=self.train_info_df) #TODO val,train 분리
-
             # self.train_dataset, self.val_dataset = random_split(
             #     full_trainset, [0.8, 0.2], generator=torch.Generator().manual_seed(42)
             # )
@@ -39,7 +38,7 @@ class DataModule(pl.LightningDataModule):
                 image_size=self.image_size,
                 crop_size=self.crop_size,
             )
-            trainval_dataset = EASTDataset(trainval_dataset)
+            
 
             train_size = int(0.8 * len(trainval_dataset))
             val_size = len(trainval_dataset) - train_size
@@ -61,6 +60,8 @@ class DataModule(pl.LightningDataModule):
             batch_size=self.batch_size,
             num_workers=self.num_workers,
             shuffle=True,
+            pin_memory=True,
+            # prefetch_factor = 4
         )
 
     def val_dataloader(self):
@@ -69,6 +70,8 @@ class DataModule(pl.LightningDataModule):
             batch_size=self.batch_size,
             num_workers=self.num_workers,
             shuffle=False,
+            pin_memory=True,
+            # prefetch_factor = 4
         )
 
     # def test_dataloader(self):
@@ -85,12 +88,14 @@ class DataModule(pl.LightningDataModule):
 
 def train_data(train_data_dir, image_size, crop_size):
     if True:
-        return SceneTextDataset(
+        train_dataset = SceneTextDataset(
                 train_data_dir,
                 split='train',
                 image_size=image_size,
-                crop_size=crop_size,
-            )
+                crop_size=crop_size,)
+        # train_dataset = 
+        return EASTDataset(train_dataset)
+        
 
 
 # TODO

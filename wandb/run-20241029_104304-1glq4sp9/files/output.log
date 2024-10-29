@@ -1,0 +1,100 @@
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+Missing logger folder: ./output/tmp_10-29_01:42:59/result
+/opt/conda/lib/python3.10/site-packages/pytorch_lightning/loggers/wandb.py:389: There is a wandb run already in progress and newly created instances of `WandbLogger` will reuse this run. If this is not desired, call `wandb.finish()` before instantiating `WandbLogger`.
+/opt/conda/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:630: Checkpoint directory ./output/tmp_10-29_01:42:59 exists and is not empty.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name     | Type | Params
+----------------------------------
+0 | backbone | EAST | 15.1 M
+----------------------------------
+15.1 M    Trainable params
+0         Non-trainable params
+15.1 M    Total params
+60.407    Total estimated model params size (MB)
+Sanity Checking: |                                                                                                                                                                            | 0/? [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/main.py", line 127, in <module>
+    main(args)
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/main.py", line 115, in main
+    do_training(args)
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/main.py", line 105, in do_training
+    trainer.fit(trainer_mod, data_mod)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 545, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 581, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 990, in _run
+    results = self._run_stage()
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1034, in _run_stage
+    self._run_sanity_check()
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1063, in _run_sanity_check
+    val_loop.run()
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 181, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 127, in run
+    batch, batch_idx, dataloader_idx = next(data_fetcher)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/loops/fetchers.py", line 127, in __next__
+    batch = super().__next__()
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/loops/fetchers.py", line 56, in __next__
+    batch = next(self.iterator)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/utilities/combined_loader.py", line 326, in __next__
+    out = next(self._iterator)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/utilities/combined_loader.py", line 132, in __next__
+    out = next(self.iterators[0])
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1345, in _next_data
+    return self._process_data(data)
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1371, in _process_data
+    data.reraise()
+  File "/opt/conda/lib/python3.10/site-packages/torch/_utils.py", line 694, in reraise
+    raise exception
+numba.core.errors.TypingError: Caught TypingError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 49, in fetch
+    data = self.dataset.__getitems__(possibly_batched_index)
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataset.py", line 364, in __getitems__
+    return [self.dataset[self.indices[idx]] for idx in indices]
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataset.py", line 364, in <listcomp>
+    return [self.dataset[self.indices[idx]] for idx in indices]
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/east_dataset.py", line 136, in __getitem__
+    score_map, geo_map = generate_score_geo_maps(image, word_bboxes, map_scale=self.map_scale)
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/east_dataset.py", line 103, in generate_score_geo_maps
+    theta = find_min_rect_angle(bbox)
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/east_dataset.py", line 80, in find_min_rect_angle
+    error = calc_error_from_rect(rotated_bbox)
+  File "/opt/conda/lib/python3.10/site-packages/numba/core/dispatcher.py", line 423, in _compile_for_args
+    error_rewrite(e, 'typing')
+  File "/opt/conda/lib/python3.10/site-packages/numba/core/dispatcher.py", line 364, in error_rewrite
+    raise e.with_traceback(None)
+numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+No implementation of function Function(<function amin at 0x7f52b3507130>) found for signature:
+
+ >>> amin(array(float64, 2d, F), axis=Literal[int](0))
+
+There are 4 candidate implementations:
+  - Of which 4 did not match due to:
+  Overload in function 'npy_min': File: numba/np/arraymath.py: Line 491.
+    With argument(s): '(array(float64, 2d, F), axis=int64)':
+   Rejected as the implementation raised a specific error:
+     TypingError: got an unexpected keyword argument 'axis'
+  raised from /opt/conda/lib/python3.10/site-packages/numba/core/typing/templates.py:783
+
+During: resolving callee type: Function(<function amin at 0x7f52b3507130>)
+During: typing of call at /data/ephemeral/home/level2-cv-datacentric-cv-01/east_dataset.py (53)
+
+
+File "east_dataset.py", line 53:
+def calc_error_from_rect(bbox):
+    <source elided>
+    '''
+    x_min, y_min = np.min(bbox, axis=0)
+    ^

@@ -5,7 +5,9 @@ import numpy as np
 import cv2
 from torch.utils.data import Dataset
 
+from numba import jit ##TODO 
 
+@jit(nopython=True)##TODO
 def shrink_bbox(bbox, coef=0.3, inplace=False):
     lens = [np.linalg.norm(bbox[i] - bbox[(i + 1) % 4], ord=2) for i in range(4)]
     r = [min(lens[(i - 1) % 4], lens[i]) for i in range(4)]
@@ -37,11 +39,10 @@ def get_rotated_coords(h, w, theta, anchor):
     rotated_y = rotated_coord[1, :].reshape(y.shape)
     return rotated_x, rotated_y
 
-
+@jit(nopython=True) ##TODO
 def get_rotate_mat(theta):
     return np.array([[math.cos(theta), -math.sin(theta)],
                      [math.sin(theta), math.cos(theta)]])
-
 
 def calc_error_from_rect(bbox):
     '''
@@ -54,14 +55,13 @@ def calc_error_from_rect(bbox):
                     dtype=np.float32)
     return np.linalg.norm(bbox - rect, axis=0).sum()
 
-
+@jit(nopython=True) ##TODO
 def rotate_bbox(bbox, theta, anchor=None):
     points = bbox.T
     if anchor is None:
         anchor = points[:, :1]
     rotated_points = np.dot(get_rotate_mat(theta), points - anchor) + anchor
     return rotated_points.T
-
 
 def find_min_rect_angle(bbox, rank_num=10):
     '''Find the best angle to rotate poly and obtain min rectangle
@@ -82,7 +82,6 @@ def find_min_rect_angle(bbox, rank_num=10):
             best_angle, min_error = angles[idx], error
 
     return best_angle
-
 
 def generate_score_geo_maps(image, word_bboxes, map_scale=0.5):
     img_h, img_w = image.shape[:2]

@@ -34,11 +34,11 @@ def parse_args():
 
 
     parser.add_argument("--gpus", type=str, default='0')
-    parser.add_argument('--num_workers', type=int, default=4)
+    parser.add_argument('--num_workers', type=int, default=8)
 
     parser.add_argument('--image_size', type=int, default=2048)
-    parser.add_argument('--input_size', type=int, default=1024)
-    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--input_size', type=int, default=512)
+    parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--learning_rate', type=float, default=1e-3)
     parser.add_argument('--epoch', type=int, default=150)
     
@@ -50,21 +50,21 @@ def parse_args():
 
     return args
 
-def setup_logger(use_wandb=False, output_dir='./output'):
+def setup_logger(use_wandb=True, output_dir='./output'):
     my_loggers = []
     csv_logger = CSVLogger(save_dir=output_dir, name="result")
     my_loggers.append(csv_logger)
 
     if use_wandb:
         wandb.init(
-            project="sketch classification",
-            entity="nav_sketch",
-            name=output_dir.replace("./result/", ""),
+            project="p3_ocr",
+            entity="tayoung1005-aitech",
+            name=output_dir     #.replace("./result/", ""),
         )
         wandb_logger = WandbLogger(
             save_dir=output_dir,
             name=os.path.basename(output_dir),
-            project="sketch classification",
+            project="p3_ocr",
         )
         my_loggers.append(wandb_logger)
 
@@ -79,7 +79,7 @@ def do_training(args):
     checkpoint_callback = []
     checkpoint_callback.append(
         ModelCheckpoint(
-            dirpath='./output',
+            dirpath=args.output_dir,
             save_last=True,
             save_top_k=1,
             monitor='val_loss',

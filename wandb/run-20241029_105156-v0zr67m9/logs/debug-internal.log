@@ -1,0 +1,16 @@
+{"time":"2024-10-29T10:51:56.895444303+09:00","level":"INFO","msg":"using version","core version":"0.18.5"}
+{"time":"2024-10-29T10:51:56.895471949+09:00","level":"INFO","msg":"created symlink","path":"/data/ephemeral/home/level2-cv-datacentric-cv-01/wandb/run-20241029_105156-v0zr67m9/logs/debug-core.log"}
+{"time":"2024-10-29T10:51:56.997646306+09:00","level":"INFO","msg":"created new stream","id":"v0zr67m9"}
+{"time":"2024-10-29T10:51:56.997694629+09:00","level":"INFO","msg":"stream: started","id":"v0zr67m9"}
+{"time":"2024-10-29T10:51:56.997781981+09:00","level":"INFO","msg":"sender: started","stream_id":"v0zr67m9"}
+{"time":"2024-10-29T10:51:56.997727912+09:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"v0zr67m9"}}
+{"time":"2024-10-29T10:51:56.99783277+09:00","level":"INFO","msg":"handler: started","stream_id":{"value":"v0zr67m9"}}
+{"time":"2024-10-29T10:51:57.406989746+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-10-29T10:53:04.065066888+09:00","level":"INFO","msg":"stream: closing","id":"v0zr67m9"}
+{"time":"2024-10-29T10:53:04.065100935+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-10-29T10:53:04.066171933+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-10-29T10:53:04.266455904+09:00","level":"INFO","msg":"api: retrying HTTP error","status":409,"url":"https://api.wandb.ai/graphql"}
+{"time":"2024-10-29T10:53:04.311717354+09:00","level":"ERROR","msg":"HTTP error","status":404,"method":"POST","url":"https://api.wandb.ai/graphql"}
+{"time":"2024-10-29T10:53:04.311757356+09:00","level":"ERROR","msg":"runfiles: CreateRunFiles returned error: returned error 404 Not Found: {\"errors\":[{\"message\":\"run p3_ocr/v0zr67m9 not found during createRunFiles\",\"path\":[\"createRunFiles\"]}],\"data\":{\"createRunFiles\":null}}"}
+{"time":"2024-10-29T10:53:06.588841618+09:00","level":"INFO","msg":"api: retrying HTTP error","status":409,"url":"https://api.wandb.ai/graphql"}
+{"time":"2024-10-29T10:53:11.468697964+09:00","level":"INFO","msg":"api: retrying HTTP error","status":409,"url":"https://api.wandb.ai/graphql"}

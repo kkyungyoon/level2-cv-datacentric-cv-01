@@ -1,0 +1,28 @@
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+Missing logger folder: ./output/tmp_10-29_01:51:23/result
+/opt/conda/lib/python3.10/site-packages/pytorch_lightning/loggers/wandb.py:389: There is a wandb run already in progress and newly created instances of `WandbLogger` will reuse this run. If this is not desired, call `wandb.finish()` before instantiating `WandbLogger`.
+Traceback (most recent call last):
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/main.py", line 127, in <module>
+    main(args)
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/main.py", line 115, in main
+    do_training(args)
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/main.py", line 105, in do_training
+    trainer.fit(trainer_mod, data_mod)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 545, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 581, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 951, in _run
+    call._call_setup_hook(self)  # allow user to setup lightning_module in accelerator environment
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 92, in _call_setup_hook
+    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
+  File "/opt/conda/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 179, in _call_lightning_datamodule_hook
+    return fn(*args, **kwargs)
+  File "/data/ephemeral/home/level2-cv-datacentric-cv-01/data_module.py", line 43, in setup
+    train_size = int(0.8 * len(trainval_dataset))
+TypeError: object of type 'NoneType' has no len()

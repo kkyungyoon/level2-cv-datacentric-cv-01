@@ -4,3 +4,6 @@
 /output
 /data
 /__pycache__
+*.log
+*.wandb
+*.json

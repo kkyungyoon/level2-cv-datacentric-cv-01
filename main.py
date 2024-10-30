@@ -50,7 +50,7 @@ def parse_args():
 
     return args
 
-def setup_logger(use_wandb=False, output_dir='./output'):
+def setup_logger(use_wandb=True, output_dir='./output'):
     my_loggers = []
     csv_logger = CSVLogger(save_dir=output_dir, name="result")
     my_loggers.append(csv_logger)

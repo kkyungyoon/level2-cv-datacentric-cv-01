@@ -415,16 +415,17 @@ class SceneTextDataset(Dataset):
             image = image.convert('RGB')
         image = np.array(image)
 
-        noisy_image = util.random_noise(image, mode='s&p', amount=0.09)
-        image = (noisy_image * 255).astype(np.uint8)
+        # noisy_image = util.random_noise(image, mode='s&p', amount=0.09)
+        # image = (noisy_image * 255).astype(np.uint8)
 
         # 이진화 적용
-        # if self.binarize:
-        #     gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-        #     _, binary_image = cv2.threshold(
-        #         gray_image, self.binarization_threshold, 255, cv2.THRESH_BINARY
-        #     )
-        #     image = cv2.cvtColor(binary_image, cv2.COLOR_GRAY2RGB)
+        if self.binarize:
+            gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+            _, binary_image = cv2.threshold(
+                gray_image, self.binarization_threshold, 255, cv2.THRESH_BINARY
+            )
+            # image = cv2.cvtColor(binary_image, cv2.COLOR_GRAY2RGB)
+            image = np.stack([binary_image] * 3, axis=-1)
 
         funcs = []
         if self.color_jitter:

@@ -10,6 +10,8 @@ import albumentations as A
 from torch.utils.data import Dataset
 from shapely.geometry import Polygon
 from numba import njit
+from skimage import io, util
+
 
 @njit
 def cal_distance(x1, y1, x2, y2):
@@ -342,7 +344,9 @@ class SceneTextDataset(Dataset):
                  ignore_under_threshold=10,
                  drop_under_threshold=1,
                  color_jitter=True,
-                 normalize=True):
+                 normalize=True,
+                 binarize=True,  # binarize 옵션 추가
+                 binarization_threshold=128):
         self._lang_list = ['chinese', 'japanese', 'thai', 'vietnamese']
         self.root_dir = root_dir
         self.split = split
@@ -358,6 +362,9 @@ class SceneTextDataset(Dataset):
 
         self.image_size, self.crop_size = image_size, crop_size
         self.color_jitter, self.normalize = color_jitter, normalize
+        
+        self.binarize = binarize  # binarize 옵션 저장
+        self.binarization_threshold = binarization_threshold  # 이진화 임계값 저장
 
         self.drop_under_threshold = drop_under_threshold
         self.ignore_under_threshold = ignore_under_threshold
@@ -407,6 +414,17 @@ class SceneTextDataset(Dataset):
         if image.mode != 'RGB':
             image = image.convert('RGB')
         image = np.array(image)
+
+        noisy_image = util.random_noise(image, mode='s&p', amount=0.09)
+        image = (noisy_image * 255).astype(np.uint8)
+
+        # 이진화 적용
+        # if self.binarize:
+        #     gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        #     _, binary_image = cv2.threshold(
+        #         gray_image, self.binarization_threshold, 255, cv2.THRESH_BINARY
+        #     )
+        #     image = cv2.cvtColor(binary_image, cv2.COLOR_GRAY2RGB)
 
         funcs = []
         if self.color_jitter:

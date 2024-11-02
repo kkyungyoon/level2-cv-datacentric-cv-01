@@ -66,6 +66,11 @@ class Extractor(nn.Module):
         super().__init__()
         vgg16_bn = VGG(make_layers(cfg, batch_norm=True))
         if pretrained:
+            # state_dict = torch.hub.load_state_dict_from_url(
+            #     'https://download.pytorch.org/models/vgg16_bn-6c64b313.pth',
+            #     map_location=torch.device('cuda')  # Allocate weights to GPU
+            # )
+            # vgg16_bn.load_state_dict(state_dict)
             vgg16_bn.load_state_dict(torch.load('./pths/vgg16_bn-6c64b313.pth'))
         self.features = vgg16_bn.features
 

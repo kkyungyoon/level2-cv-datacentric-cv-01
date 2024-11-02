@@ -342,13 +342,17 @@ class SceneTextDataset(Dataset):
                  ignore_under_threshold=10,
                  drop_under_threshold=1,
                  color_jitter=True,
-                 normalize=True):
+                 normalize=True,
+                 num_fold=None):
         self._lang_list = ['chinese', 'japanese', 'thai', 'vietnamese']
         self.root_dir = root_dir
         self.split = split
         total_anno = dict(images=dict())
+        self.num_fold = num_fold
+
         for nation in self._lang_list:
-            with open(osp.join(root_dir, '{}_receipt/ufo/{}.json'.format(nation, split)), 'r', encoding='utf-8') as f:
+            split_num = split + str(self.num_fold)
+            with open(osp.join(root_dir, '{}_receipt/ufo/{}.json'.format(nation, split_num)), 'r', encoding='utf-8') as f:
                 anno = json.load(f)
             for im in anno['images']:
                 total_anno['images'][im] = anno['images'][im]
@@ -361,7 +365,7 @@ class SceneTextDataset(Dataset):
 
         self.drop_under_threshold = drop_under_threshold
         self.ignore_under_threshold = ignore_under_threshold
-
+        
     def _infer_dir(self, fname):
         lang_indicator = fname.split('.')[1]
         if lang_indicator == 'zh':

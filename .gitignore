@@ -10,3 +10,4 @@
 *.yaml
 /wandb
 *.csv
+super_resolution/

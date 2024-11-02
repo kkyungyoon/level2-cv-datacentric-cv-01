@@ -355,7 +355,10 @@ class SceneTextDataset(Dataset):
         self.num_fold = num_fold
 
         for nation in self._lang_list:
-            split_num = split + str(self.num_fold)
+            if num_fold is not None:
+              split_num = split + str(self.num_fold)
+            else:
+                split_num = split
             with open(osp.join(root_dir, '{}_receipt/ufo/{}.json'.format(nation, split_num)), 'r', encoding='utf-8') as f:
                 anno = json.load(f)
             for im in anno['images']:

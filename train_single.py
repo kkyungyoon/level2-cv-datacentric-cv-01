@@ -91,8 +91,7 @@ def do_training(data_dir, model_dir, device, image_size, input_size, num_workers
         data_dir,
         split='valid',
         image_size=image_size,
-        crop_size=input_size,
-        num_fold=fold  # fold 변수를 추가
+        crop_size=input_size
     )
     val_dataset = EASTDataset(val_dataset)
     val_loader = DataLoader(

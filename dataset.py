@@ -422,23 +422,33 @@ class SceneTextDataset(Dataset):
             image = image.convert('RGB')
         image = np.array(image)
 
+        # salt and pepper
         # noisy_image = util.random_noise(image, mode='s&p', amount=0.09)
         # image = (noisy_image * 255).astype(np.uint8)
 
-        # 이진화 적용
-        if self.binarize:
-            gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-            _, binary_image = cv2.threshold(
-                gray_image, self.binarization_threshold, 255, cv2.THRESH_BINARY
-            )
-            # image = cv2.cvtColor(binary_image, cv2.COLOR_GRAY2RGB)
-            image = np.stack([binary_image] * 3, axis=-1)
+        # binarization
+        # if self.binarize:
+        #     gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        #     _, binary_image = cv2.threshold(
+        #         gray_image, self.binarization_threshold, 255, cv2.THRESH_BINARY
+        #     )
+        #     # image = cv2.cvtColor(binary_image, cv2.COLOR_GRAY2RGB)
+        #     image = np.stack([binary_image] * 3, axis=-1)
+
+        # binarization - adaptive threshold
+        # if self.binarize:
+        #     gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        #     adaptive_threshold = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        #     # image = cv2.cvtColor(binary_image, cv2.COLOR_GRAY2RGB)
+        #     image = np.stack([adaptive_threshold] * 3, axis=-1)
 
         funcs = []
         if self.color_jitter:
             funcs.append(A.ColorJitter())
         if self.normalize:
             funcs.append(A.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)))
+            # funcs.append(A.Normalize(mean=(0.67817392, 0.65295607, 0.62366413), std=(0.16878251, 0.18058526, 0.20039655))) # 기본 이미지
+            # funcs.append(A.Normalize(mean=(0.82856762, 0.82856762, 0.82856762), std=(0.08780395, 0.08780395, 0.08780395))) # binarization - adaptive threshold 이미지
         transform = A.Compose(funcs)
 
         image = transform(image=image)['image']

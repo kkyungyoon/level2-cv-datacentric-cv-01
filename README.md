@@ -65,7 +65,7 @@ This project utilizes a dataset specifically designed for OCR tasks involving re
 
 ## Results
 
-### Final Results
+### Final Results (Public, Private)
 <div align="center">
     <img src="https://github.com/user-attachments/assets/3cf8c761-0227-4e77-9d6a-b7da305f6ff6" />
     <p style="font-weight: bold; margin-top: 10px;">

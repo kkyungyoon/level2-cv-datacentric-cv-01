@@ -449,6 +449,7 @@ class SceneTextDataset(Dataset):
             funcs.append(A.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)))
             # funcs.append(A.Normalize(mean=(0.67817392, 0.65295607, 0.62366413), std=(0.16878251, 0.18058526, 0.20039655))) # 기본 이미지
             # funcs.append(A.Normalize(mean=(0.82856762, 0.82856762, 0.82856762), std=(0.08780395, 0.08780395, 0.08780395))) # binarization - adaptive threshold 이미지
+            # funcs.append(A.Normalize(mean=(0.65843011, 0.62664251, 0.60161992), std=(0.15958804, 0.16838314, 0.18364804))) # remove dash한 super resolution
         transform = A.Compose(funcs)
 
         image = transform(image=image)['image']

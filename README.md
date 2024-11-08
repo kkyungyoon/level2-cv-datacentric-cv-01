@@ -1,12 +1,7 @@
 # BoostCamp AI Tech 7th CV-01 Object Detection Project
 
 ## Team Members
-| <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995
-" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995
-" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995
-" width="100"> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995
-" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995
-" wdith="100/"> |
+| <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" wdith="100/"> |
 |:----------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------:|
 | **동준**                                                     | **경윤**                                                      | **영석**                                                      | **태영**                                                      | **태성**                                                      | **세린**                                                      |
 

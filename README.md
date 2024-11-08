@@ -1,9 +1,28 @@
 # BoostCamp AI Tech 7th CV-01 Object Detection Project
 
+
 ## Team Members
-| <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/> | <img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" wdith="100/"> |
-|:----------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------:|
-| **동준**                                                     | **경윤**                                                      | **영석**                                                      | **태영**                                                      | **태성**                                                      | **세린**                                                      |
+<div align="center">
+<table>
+<tr>
+<td><img src="https://github.com/user-attachments/assets/539241ed-cfcd-4055-8c9f-0766df482995" width="100"/></td>
+<td><img src="https://github.com/user-attachments/assets/aa787599-06e3-4eda-ab0d-b234c8633a26" width="100"/></td>
+<td><img src="https://github.com/user-attachments/assets/776e4f23-c1dc-46b0-b56b-8b5418e46c53" width="100"/></td>
+<td><img src="https://github.com/user-attachments/assets/2814cffd-5219-4dab-929f-ebd48d8fa4d3" width="100"/></td>
+<td><img src="https://github.com/user-attachments/assets/e84a8972-9e37-426d-85c7-501d68a1a24e" width="100"/></td>
+<td><img src="https://github.com/user-attachments/assets/f9589259-b6bd-46d0-96b6-e2e8a91741d8" width="100"/></td>
+</tr>
+<tr>
+<td><b>동준</b></td>
+<td><b>경윤</b></td>
+<td><b>영석</b></td>
+<td><b>태영</b></td>
+<td><b>태성</b></td>
+<td><b>세린</b></td>
+</tr>
+</table>
+</div>
+              
 
 ## Contribute
 
@@ -46,18 +65,22 @@ This project utilizes a dataset specifically designed for OCR tasks involving re
 
 ## Results
 
-### 최종 결과 
-
-<div style="display: flex; flex-direction: column; align-items: center;">
-    <div style="text-align: center; margin-bottom: 10px;">
-        <img src="https://github.com/user-attachments/assets/244d276e-1e85-4752-984a-680a24193b1f" width="500" />
-    </div>
+### Final Results
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/3cf8c761-0227-4e77-9d6a-b7da305f6ff6" />
+    <p style="font-weight: bold; margin-top: 10px;">
+        The result of Ensemble (WBF, IoU=0.3):<br>
+        Super resolution (x4) + Normalize (base) + Remove dash + 3 folds (9:1 train-valid split)<br>
+        Super resolution (x4) + Normalize (custom) + Remove dash
+    </p>
 </div>
-
 
 ### Data augmentation
 
 <div>
+    <div style="text-align: center; margin-bottom: 10px;">
+        <img src="https://github.com/user-attachments/assets/06200793-a5f1-4f61-9346-63a4d26dc070" width="500" />
+    </div>
     <div style="text-align: center; margin-bottom: 10px;">
         <img src="https://github.com/user-attachments/assets/499e8fac-b680-427b-8ac5-0ba33daec6e5" width="500" />
     </div>

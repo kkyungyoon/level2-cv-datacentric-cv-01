@@ -28,12 +28,12 @@
 
 | Member | Roles |
 |--------|-------|
-| **동준** | K-fold, Dataset Add, Remove dash, Ensemble |
-| **영석** | EDA, Streamlit으로 결과 시각화, cv2에서 사용 가능한 이미지 처리 기법 탐색 |
-| **경윤** | EDA, 라이브러리 구조파악, Model 선택, 가설 설정 및 실험 |
-| **태영** | EDA, super resolution, Ensemble |
-| **세린** | EDA, Detectron2 k-fold |
-| **태성** | 템플릿 코드 작성, Dataset Add  |
+| **동준** | Data 직접 검토, K-fold, Dataset Add, Remove dash, Ensemble |
+| **영석** | EDA, Data 직접 검토, Streamlit으로 결과 시각화, cv2에서 사용 가능한 이미지 처리 기법 탐색 |
+| **경윤** | EDA, Data 직접 검토, augmentation 기법 적용(salt and pepper, binarization, normalize) |
+| **태영** | EDA, Data 직접 검토, super resolution, Ensemble |
+| **세린** | Data 직접 검토, augmentation 기법 조사 |
+| **태성** | 템플릿 코드 작성, Data 직접 검토, Dataset Add   |
 
 
 ## Overview

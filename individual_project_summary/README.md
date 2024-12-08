@@ -38,8 +38,8 @@
 
 | **Model**           | **LB (Public)**                                           | **LB (Private)**                                          |
 |---------------------|---------------------------------------------------------|---------------------------------------------------------|
-| **Base**             | Precision: 0.7176<br>Recall: 0.8512<br>F1_score: **0.7787** | Precision: 0.7129<br>Recall: 0.8429<br>F1_score: **0.7725** |
-| **Base + Salt and Pepper** | Precision: 0.7716<br>Recall: 0.8565<br>F1_score: **0.8119** | Precision: 0.7456<br>Recall: 0.8165<br>F1_score: **0.7795** |
+| **Base**             | Precision: 0.7176<br>Recall: 0.8512<br>F1_score: 0.7787 | Precision: 0.7129<br>Recall: 0.8429<br>F1_score: 0.7725 |
+| **Base + Salt and Pepper** | Precision: 0.7716<br>Recall: 0.8565<br>F1_score: ✅**0.8119** | Precision: 0.7456<br>Recall: 0.8165<br>F1_score: ✅**0.7795** |
 
 <br>
 <br>
@@ -71,8 +71,8 @@
 
 | **Model**           | **LB (Public)**                                           | **LB (Private)**                                          |
 |---------------------|---------------------------------------------------------|---------------------------------------------------------|
-| **Base**             | Precision: 0.7176<br>Recall: 0.8512<br>F1_score: **0.7787** | Precision: 0.7129<br>Recall: 0.8429<br>F1_score: **0.7725** |
-| **Base + Binarization** | Precision: 0.8596<br>Recall: 0.8083<br>F1_score: **0.8332** | Precision: 0.8300<br>Recall: 0.7915<br>F1_score: **0.8103** |
+| **Base**             | Precision: 0.7176<br>Recall: 0.8512<br>F1_score: 0.7787 | Precision: 0.7129<br>Recall: 0.8429<br>F1_score: 0.7725 |
+| **Base + Binarization** | Precision: 0.8596<br>Recall: 0.8083<br>F1_score: ✅**0.8332** | Precision: 0.8300<br>Recall: 0.7915<br>F1_score: ✅**0.8103** |
 
 <br>
 <br>
@@ -109,8 +109,8 @@
 
 | **Model**                             | **LB (Public)**                                           | **LB (Private)**                                          |
 |---------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
-| **Base + Normalize (데이터셋에 맞는 값)** | Precision: 0.8248<br>Recall: 0.8604<br>F1_score: **0.8422** | Precision: 0.8047<br>Recall: 0.8252<br>F1_score: **0.8148** |
-| **Base + Normalize (0.5) + Binarization** | Precision: 0.7631<br>Recall: 0.7297<br>F1_score: **0.7460** | Precision: 0.7449<br>Recall: 0.7013<br>F1_score: **0.7224** |
+| **Base + Normalize (데이터셋에 맞는 값)** | Precision: 0.8248<br>Recall: 0.8604<br>F1_score: ✅**0.8422** | Precision: 0.8047<br>Recall: 0.8252<br>F1_score: ✅**0.8148** |
+| **Base + Normalize (0.5) + Binarization** | Precision: 0.7631<br>Recall: 0.7297<br>F1_score: 0.7460 | Precision: 0.7449<br>Recall: 0.7013<br>F1_score: 0.7224 |
 
 <br>
 <br>
@@ -145,5 +145,5 @@
 
 | **Model**           | **LB (Public)**                                           | **LB (Private)**                                          |
 |---------------------|---------------------------------------------------------|---------------------------------------------------------|
-| **Base**             | Precision: 0.7176<br>Recall: 0.8512<br>F1_score: **0.7787** | Precision: 0.7129<br>Recall: 0.8429<br>F1_score: **0.7725** |
-| **Base + Normalize** | Precision: 0.8248<br>Recall: 0.8604<br>F1_score: **0.8422** | Precision: 0.8047<br>Recall: 0.8252<br>F1_score: **0.8148** |
+| **Base**             | Precision: 0.7176<br>Recall: 0.8512<br>F1_score: 0.7787 | Precision: 0.7129<br>Recall: 0.8429<br>F1_score: 0.7725 |
+| **Base + Normalize** | Precision: 0.8248<br>Recall: 0.8604<br>F1_score: ✅**0.8422** | Precision: 0.8047<br>Recall: 0.8252<br>F1_score: ✅**0.8148** |
